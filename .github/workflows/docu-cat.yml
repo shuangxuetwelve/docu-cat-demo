@@ -16,6 +16,6 @@ jobs:
           fetch-depth: 0
 
       - name: Run DocuCat
-        uses: shuangxuetwelve/docu-cat
+        uses: shuangxuetwelve/docu-cat@main
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
