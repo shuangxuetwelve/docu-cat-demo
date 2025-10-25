@@ -1,0 +1,21 @@
+name: DocuCat - Document Generator
+
+on:
+  pull_request:
+    types: [opened, synchronize, reopened]
+
+jobs:
+  docu-cat:
+    runs-on: ubuntu-latest
+    name: Generate/Update Documentation
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Run DocuCat
+        uses: shuangxuetwelve/docu-cat
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
