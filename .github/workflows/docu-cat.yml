@@ -9,11 +9,17 @@ jobs:
     runs-on: ubuntu-latest
     name: Generate/Update Documentation
 
+    permissions:
+      contents: write
+      pull-requests: write
+
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
         with:
           fetch-depth: 0
+          token: ${{ secrets.GITHUB_TOKEN }}
+          ref: ${{ github.event.pull_request.head.ref }}
 
       - name: Run DocuCat
         uses: shuangxuetwelve/docu-cat@main
