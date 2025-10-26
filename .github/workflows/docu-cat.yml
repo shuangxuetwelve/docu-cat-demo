@@ -19,3 +19,4 @@ jobs:
         uses: shuangxuetwelve/docu-cat@main
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
+          openrouter-api-key: ${{ secrets.OPENROUTER_API_KEY }}
