@@ -1,5 +1,5 @@
 import Image from "next/image";
-import { Button } from "@/components";
+import { ButtonSmall, TextButton } from "@/components";
 
 export default function Home() {
   return (
@@ -36,7 +36,7 @@ export default function Home() {
           </p>
         </div>
         <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <Button
+          <ButtonSmall
             variant="primary"
             href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
             target="_blank"
@@ -45,15 +45,14 @@ export default function Home() {
             iconAlt="Vercel logomark"
           >
             Deploy Now
-          </Button>
-          <Button
-            variant="secondary"
+          </ButtonSmall>
+          <TextButton
             href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
             target="_blank"
             rel="noopener noreferrer"
           >
             Documentation
-          </Button>
+          </TextButton>
         </div>
       </main>
     </div>

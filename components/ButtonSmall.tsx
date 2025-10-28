@@ -20,7 +20,7 @@ interface ButtonSmallProps {
  * @param param0
  * @returns
  */
-export default function ButtonSmall({
+export function ButtonSmall({
   children,
   variant = "primary",
   href,

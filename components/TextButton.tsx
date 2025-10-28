@@ -21,7 +21,7 @@ interface TextButtonProps {
  * @param props - TextButton component props
  * @returns A button component styled as text
  */
-export default function TextButton({
+export function TextButton({
   children,
   href,
   onClick,
