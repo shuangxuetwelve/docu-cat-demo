@@ -20,6 +20,6 @@ Open [http://localhost:3000](http://localhost:3000) to view the app.
 ## Documentation
 
 See [docs/COMPONENTS.md](docs/COMPONENTS.md) for component documentation. It contains the following components:
-* [DocuCatButton](components/DocuCatButton.tsx)
+* [ButtonBase](components/ButtonBase.tsx)
 * [ButtonSmall](components/ButtonSmall.tsx)
 * [TextButton](components/TextButton.tsx)
