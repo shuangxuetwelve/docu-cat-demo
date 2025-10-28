@@ -157,7 +157,7 @@ This allows the same component to handle both navigation (links) and actions (bu
 ### TypeScript Interface
 
 ```typescript
-interface ButtonProps {
+interface ButtonBaseProps {
   children: React.ReactNode;
   variant?: "primary" | "secondary";
   href?: string;
