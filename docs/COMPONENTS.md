@@ -6,6 +6,7 @@ This document provides detailed information about all reusable components in the
 
 - [Button](#button)
 - [ButtonSmall](#buttonsmall)
+- [TextButton](#textbutton)
 
 ---
 
@@ -360,6 +361,246 @@ Inherits all accessibility features from the base Button component:
 - Provide meaningful `iconAlt` text when using icons
 - Ensure touch targets are at least 44x44px on mobile (consider padding)
 - Include `rel="noopener noreferrer"` for external links with `target="_blank"`
+
+---
+
+## TextButton
+
+A text-styled button component that looks like a clickable text link. Perfect for subtle actions, inline links, or when you need a button that doesn't stand out visually.
+
+**Location:** `components/TextButton.tsx`
+
+### Features
+
+- Wraps the base `Button` component
+- No background or border styling
+- Looks like clickable text with underline on hover
+- Auto width and height (inline styling)
+- No padding - fits naturally within text flow
+- Inherits Button functionality: link/button rendering, icons
+- Full dark mode support
+- TypeScript interface for type safety
+
+### Props
+
+| Prop | Type | Default | Required | Description |
+|------|------|---------|----------|-------------|
+| `children` | `React.ReactNode` | - | Yes | The text content to display |
+| `href` | `string` | - | No | If provided, renders as an anchor tag instead of button |
+| `onClick` | `() => void` | - | No | Click handler function |
+| `icon` | `string` | - | No | Path to icon image (e.g., `/arrow.svg`) |
+| `iconAlt` | `string` | `""` | No | Alt text for the icon |
+| `className` | `string` | `""` | No | Additional CSS classes to apply |
+| `target` | `string` | - | No | Link target attribute (e.g., `"_blank"`) |
+| `rel` | `string` | - | No | Link relationship attribute (e.g., `"noopener noreferrer"`) |
+
+### Style Comparison
+
+| Property | Button | TextButton |
+|----------|--------|------------|
+| Background | Solid/Border | Transparent |
+| Border | Optional | None |
+| Height | `h-12` (3rem) | Auto |
+| Padding | `px-5` | None |
+| Width | `w-full` / responsive | Auto (inline) |
+| Hover | Background change | Underline |
+
+### Usage Examples
+
+#### Basic Text Button
+
+```tsx
+import TextButton from "@/components/TextButton";
+
+<TextButton onClick={() => console.log("Clicked")}>
+  Learn more
+</TextButton>
+```
+
+#### Text Link Button
+
+```tsx
+<TextButton href="/about">
+  About us
+</TextButton>
+```
+
+#### External Text Link
+
+```tsx
+<TextButton
+  href="https://example.com"
+  target="_blank"
+  rel="noopener noreferrer"
+>
+  Visit our website
+</TextButton>
+```
+
+#### Text Button with Icon
+
+```tsx
+<TextButton
+  href="/docs"
+  icon="/arrow-right.svg"
+  iconAlt="Arrow"
+>
+  Read the documentation
+</TextButton>
+```
+
+#### Inline Text Button in Paragraph
+
+```tsx
+<p className="text-base text-zinc-600">
+  Already have an account?{" "}
+  <TextButton href="/login">
+    Sign in
+  </TextButton>
+</p>
+```
+
+#### Text Button with Custom Styling
+
+```tsx
+<TextButton
+  onClick={() => console.log("Danger action")}
+  className="!text-red-600 dark:!text-red-400"
+>
+  Delete account
+</TextButton>
+```
+
+### Styling Details
+
+The TextButton component applies the following overrides to the base Button:
+
+- `!bg-transparent` - Removes background
+- `!border-0` - Removes border
+- `!rounded-none` - Removes border radius
+- `!h-auto !w-auto` - Auto sizing
+- `!px-0 !py-0` - No padding
+- `!text-zinc-950 dark:!text-zinc-50` - Text color for light/dark mode
+- `hover:!bg-transparent` - Keeps background transparent on hover
+- `hover:underline` - Adds underline on hover
+- `!font-medium` - Medium font weight
+- `!transition-all` - Smooth transitions
+
+The `!` prefix ensures these styles override the base Button classes using Tailwind's important modifier.
+
+### Implementation Details
+
+TextButton is a wrapper component that passes all props to the base Button component while removing visual button styling:
+
+```tsx
+export default function TextButton({ /* props */ }: TextButtonProps) {
+  const textClasses =
+    "!bg-transparent !border-0 !rounded-none !h-auto !w-auto !px-0 !py-0 " +
+    "!text-zinc-950 dark:!text-zinc-50 " +
+    "hover:!bg-transparent hover:underline " +
+    "!font-medium !transition-all";
+
+  const combinedClasses = `${textClasses} ${className}`;
+
+  return (
+    <Button
+      variant="primary"
+      // ... other props
+      className={combinedClasses}
+    >
+      {children}
+    </Button>
+  );
+}
+```
+
+This approach ensures TextButton inherits all Button functionality (href/onClick handling, icon support) while appearing as styled text.
+
+### TypeScript Interface
+
+```typescript
+interface TextButtonProps {
+  children: React.ReactNode;
+  href?: string;
+  onClick?: () => void;
+  icon?: string;
+  iconAlt?: string;
+  className?: string;
+  target?: string;
+  rel?: string;
+}
+```
+
+Note: Unlike the base Button, TextButton doesn't have a `variant` prop since it always uses a text-only style.
+
+### When to Use
+
+**Use TextButton when:**
+- You need a clickable action that looks like a link
+- Building inline actions within text content
+- Creating subtle secondary actions
+- The action should not draw visual attention
+- You want semantic button/link behavior without button styling
+
+**Use regular Button when:**
+- The action is a primary or important action
+- Visual prominence is needed
+- Following standard button design patterns
+- You need distinct visual affordances
+
+**Use ButtonSmall when:**
+- You need a compact button with visible button styling
+- Building toolbars or action menus
+- Space is limited but visual button affordances are needed
+
+### Accessibility Considerations
+
+Inherits all accessibility features from the base Button component:
+- Uses semantic HTML (`<button>` vs `<a>`)
+- Provide meaningful `iconAlt` text when using icons
+- Ensure adequate color contrast for text (WCAG AA: 4.5:1 for normal text)
+- Consider using `aria-label` for icon-only text buttons
+- Include `rel="noopener noreferrer"` for external links with `target="_blank"`
+- Underline on hover provides clear interaction feedback
+
+### Common Patterns
+
+#### Secondary Action in Forms
+
+```tsx
+<form>
+  <Button variant="primary" type="submit">
+    Create Account
+  </Button>
+  <TextButton href="/login">
+    Already have an account?
+  </TextButton>
+</form>
+```
+
+#### Inline Help or Info Links
+
+```tsx
+<div className="form-field">
+  <label>API Key</label>
+  <input type="text" />
+  <TextButton href="/docs/api-keys">
+    Where do I find my API key?
+  </TextButton>
+</div>
+```
+
+#### Navigation in Footers
+
+```tsx
+<footer>
+  <TextButton href="/privacy">Privacy Policy</TextButton>
+  {" • "}
+  <TextButton href="/terms">Terms of Service</TextButton>
+  {" • "}
+  <TextButton href="/contact">Contact</TextButton>
+</footer>
+```
 
 ---
 

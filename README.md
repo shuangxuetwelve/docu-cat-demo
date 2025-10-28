@@ -38,6 +38,12 @@ docu-cat-demo/
 │   ├── globals.css           # Global styles
 │   ├── layout.tsx            # Root layout component
 │   └── page.tsx              # Home page component
+├── components/               # Reusable React components
+│   ├── Button.tsx            # Button component
+│   ├── ButtonSmall.tsx       # Small button component
+│   └── TextButton.tsx        # Text-styled button component
+├── docs/                     # Project documentation
+│   └── COMPONENTS.md         # Components documentation
 ├── public/                   # Static assets
 │   ├── file.svg
 │   ├── globe.svg
@@ -60,6 +66,10 @@ docu-cat-demo/
 - `npm run build` - Build for production
 - `npm start` - Start production server
 - `npm run lint` - Run ESLint
+
+## Documentation
+
+- **[Components Documentation](docs/COMPONENTS.md)** - Detailed documentation for all reusable components including Button, ButtonSmall, and TextButton
 
 ## Learn More
 
