@@ -1,5 +1,5 @@
 import React from "react";
-import { Button } from "./Button";
+import Image from "next/image";
 
 interface TextButtonProps {
   children: React.ReactNode;
@@ -16,7 +16,7 @@ interface TextButtonProps {
  * A text-styled button component that looks like a clickable text link.
  * Perfect for subtle actions, inline links, or when you need a button that doesn't stand out.
  *
- * The component relies on the Button component to render the button.
+ * A better implementation is to use the Button component and set the variant to "text". But here we leave it as a future improvement.
  *
  * @param props - TextButton component props
  * @returns A button component styled as text
@@ -31,27 +31,45 @@ export function TextButton({
   target,
   rel,
 }: TextButtonProps) {
-  // Override Button classes to make it look like text
   const textClasses =
-    "!bg-transparent !border-0 !rounded-none !h-auto !w-auto !px-0 !py-0 " +
-    "!text-zinc-950 dark:!text-zinc-50 " +
-    "hover:!bg-transparent hover:underline " +
-    "!font-medium !transition-all";
+    "inline-flex items-center gap-1 bg-transparent border-0 " +
+    "text-zinc-950 dark:text-zinc-50 " +
+    "hover:underline font-medium transition-all cursor-pointer";
 
-  const combinedClasses = `${textClasses} ${className}`;
+  const classes = `${textClasses} ${className}`;
+
+  const content = (
+    <>
+      {icon && (
+        <Image
+          className="dark:invert"
+          src={icon}
+          alt={iconAlt}
+          width={16}
+          height={16}
+        />
+      )}
+      {children}
+    </>
+  );
+
+  if (href) {
+    return (
+      <a
+        className={classes}
+        href={href}
+        onClick={onClick}
+        target={target}
+        rel={rel}
+      >
+        {content}
+      </a>
+    );
+  }
 
   return (
-    <Button
-      variant="primary"
-      href={href}
-      onClick={onClick}
-      icon={icon}
-      iconAlt={iconAlt}
-      className={combinedClasses}
-      target={target}
-      rel={rel}
-    >
-      {children}
-    </Button>
+    <button className={classes} onClick={onClick}>
+      {content}
+    </button>
   );
 }
