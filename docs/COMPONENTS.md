@@ -9,7 +9,7 @@ Versatile button that renders as `<button>` or `<a>` with icon support and two v
 **Props:** `children`, `variant?`, `href?`, `onClick?`, `icon?`, `iconAlt?`, `className?`, `target?`, `rel?`
 
 ```tsx
-import Button from "@/components/Button";
+import { Button } from "@/components/Button";
 
 <Button variant="primary">Click Me</Button>
 <Button variant="secondary" href="/page">Go to Page</Button>
@@ -23,7 +23,7 @@ import Button from "@/components/Button";
 Compact version of Button. Same props as Button. Smaller size: `h-8`, `px-3`, `text-sm`.
 
 ```tsx
-import ButtonSmall from "@/components/ButtonSmall";
+import { ButtonSmall } from "@/components/ButtonSmall";
 
 <ButtonSmall variant="primary">Save</ButtonSmall>
 <ButtonSmall href="/settings">Settings</ButtonSmall>
@@ -40,7 +40,7 @@ Button styled as clickable text. No `variant` prop. Underlines on hover.
 **Props:** `children`, `href?`, `onClick?`, `icon?`, `iconAlt?`, `className?`, `target?`, `rel?`
 
 ```tsx
-import TextButton from "@/components/TextButton";
+import { TextButton } from "@/components/TextButton";
 
 <TextButton href="/about">Learn more</TextButton>
 <TextButton onClick={handleClick}>Click here</TextButton>
