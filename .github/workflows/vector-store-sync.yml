@@ -1,0 +1,44 @@
+name: Vector Store Sync
+
+on:
+  push:
+    branches:
+      - main
+    paths-ignore:
+      - ".docucat/**" # Ignore changes to the vector store itself to prevent infinite loops
+
+jobs:
+  update-vector-store:
+    runs-on: ubuntu-latest
+    name: Initialize or Update Vector Store
+
+    # Required permissions to commit and push
+    permissions:
+      contents: write
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0 # Fetch full history for git operations
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Install uv
+        uses: astral-sh/setup-uv@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install dependencies
+        shell: bash
+        run: uv sync
+
+      - name: Initialize or Update Vector Store
+        shell: bash
+        run: uv run python init_update_store_aga.py
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+          GITHUB_WORKSPACE: ${{ github.workspace }}
