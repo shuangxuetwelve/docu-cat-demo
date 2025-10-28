@@ -1,5 +1,5 @@
 import React from "react";
-import { DocuCatButton } from "./DocuCatButton";
+import { ButtonBase } from "./ButtonBase";
 
 interface ButtonSmallProps {
   children: React.ReactNode;
@@ -36,7 +36,7 @@ export function ButtonSmall({
   const combinedClasses = `${smallClasses} ${className}`;
 
   return (
-    <DocuCatButton
+    <ButtonBase
       variant={variant}
       href={href}
       onClick={onClick}
@@ -47,6 +47,6 @@ export function ButtonSmall({
       rel={rel}
     >
       {children}
-    </DocuCatButton>
+    </ButtonBase>
   );
 }
