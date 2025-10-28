@@ -22,14 +22,6 @@ jobs:
         with:
           fetch-depth: 0 # Fetch full history for git operations
           token: ${{ secrets.GITHUB_TOKEN }}
-          path: target-repo
-
-      - name: Checkout DocuCat
-        uses: actions/checkout@v4
-        with:
-          repository: shuangxuetwelve/docu-cat # Update this to match your DocuCat repository
-          path: docu-cat
-          # ref: main  # Optionally specify a version/tag
 
       - name: Install uv
         uses: astral-sh/setup-uv@v4
@@ -39,14 +31,14 @@ jobs:
         with:
           python-version: "3.12"
 
-      - name: Install DocuCat dependencies
+      - name: Install dependencies
         shell: bash
-        run: cd docu-cat && uv sync
+        run: uv sync
 
       - name: Initialize or Update Vector Store
         shell: bash
-        run: uv run --directory docu-cat python docu-cat/init_update_store_aga.py
+        run: uv run python init_update_store_aga.py
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
-          GITHUB_WORKSPACE: ${{ github.workspace }}/target-repo
+          GITHUB_WORKSPACE: ${{ github.workspace }}
