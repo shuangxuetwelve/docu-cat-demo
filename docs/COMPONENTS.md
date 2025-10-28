@@ -2,18 +2,18 @@
 
 Reusable React components in `components/`.
 
-## Button
+## DocuCatButton
 
 Versatile button that renders as `<button>` or `<a>` with icon support and two variants: `primary` (solid) and `secondary` (outlined).
 
 **Props:** `children`, `variant?`, `href?`, `onClick?`, `icon?`, `iconAlt?`, `className?`, `target?`, `rel?`
 
 ```tsx
-import { Button } from "@/components/Button";
+import { DocuCatButton } from "@/components";
 
-<Button variant="primary">Click Me</Button>
-<Button variant="secondary" href="/page">Go to Page</Button>
-<Button icon="/icon.svg" iconAlt="Icon">With Icon</Button>
+<DocuCatButton variant="primary">Click Me</DocuCatButton>
+<DocuCatButton variant="secondary" href="/page">Go to Page</DocuCatButton>
+<DocuCatButton icon="/icon.svg" iconAlt="Icon">With Icon</DocuCatButton>
 ```
 
 ---

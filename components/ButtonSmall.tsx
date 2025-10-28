@@ -1,5 +1,5 @@
 import React from "react";
-import { DocuButton } from "./DocuButton";
+import { DocuCatButton } from "./DocuCatButton";
 
 interface ButtonSmallProps {
   children: React.ReactNode;
@@ -16,7 +16,7 @@ interface ButtonSmallProps {
 /**
  * A small version of the Button component with smaller dimensions, perfect for inline actions, toolbars, or space-constrained layouts.
  *
- * It inherits all the features of the Button component, but with smaller dimensions.
+ * It inherits all the features of the DocuCatButton component, but with smaller dimensions.
  * @param param0
  * @returns
  */
@@ -36,7 +36,7 @@ export function ButtonSmall({
   const combinedClasses = `${smallClasses} ${className}`;
 
   return (
-    <DocuButton
+    <DocuCatButton
       variant={variant}
       href={href}
       onClick={onClick}
@@ -47,6 +47,6 @@ export function ButtonSmall({
       rel={rel}
     >
       {children}
-    </DocuButton>
+    </DocuCatButton>
   );
 }

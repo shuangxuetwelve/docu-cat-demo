@@ -1,3 +1,3 @@
-export * from "./DocuButton";
+export * from "./DocuCatButton";
 export * from "./ButtonSmall";
 export * from "./TextButton";
