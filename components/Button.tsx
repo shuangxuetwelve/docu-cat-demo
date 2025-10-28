@@ -1,7 +1,7 @@
 import React from "react";
 import Image from "next/image";
 
-interface ButtonProps {
+interface ButtonBaseProps {
   children: React.ReactNode;
   variant?: "primary" | "secondary";
   href?: string;
@@ -13,7 +13,7 @@ interface ButtonProps {
   rel?: string;
 }
 
-export default function Button({
+export default function ButtonBase({
   children,
   variant = "primary",
   href,
@@ -23,7 +23,7 @@ export default function Button({
   className = "",
   target,
   rel,
-}: ButtonProps) {
+}: ButtonBaseProps) {
   const baseClasses =
     "flex h-12 w-full items-center justify-center rounded-full px-5 transition-colors md:w-[158px]";
 
