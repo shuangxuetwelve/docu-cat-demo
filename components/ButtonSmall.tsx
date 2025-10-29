@@ -16,7 +16,7 @@ interface ButtonSmallProps {
 /**
  * A small version of the Button component with smaller dimensions, perfect for inline actions, toolbars, or space-constrained layouts.
  *
- * It inherits all the features of the DocuCatButton component, but with smaller dimensions.
+ * It inherits all the features of the ButtonBase component, but with smaller dimensions.
  * @param param0
  * @returns
  */
