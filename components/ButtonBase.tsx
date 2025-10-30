@@ -1,7 +1,7 @@
 import React from "react";
 import Image from "next/image";
 
-interface DocuCatButtonProps {
+interface ButtonBaseProps {
   children: React.ReactNode;
   variant?: "primary" | "secondary";
   href?: string;
@@ -13,7 +13,7 @@ interface DocuCatButtonProps {
   rel?: string;
 }
 
-export function DocuCatButton({
+export function ButtonBase({
   children,
   variant = "primary",
   href,
@@ -23,7 +23,7 @@ export function DocuCatButton({
   className = "",
   target,
   rel,
-}: DocuCatButtonProps) {
+}: ButtonBaseProps) {
   const baseClasses =
     "flex h-12 w-full items-center justify-center rounded-full px-5 transition-colors md:w-[158px]";
 

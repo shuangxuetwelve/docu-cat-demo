@@ -1,5 +1,5 @@
 import React from "react";
-import { DocuCatButton } from "./DocuCatButton";
+import { DocuCatButton } from "./ButtonBase";
 
 interface ButtonSmallProps {
   children: React.ReactNode;
